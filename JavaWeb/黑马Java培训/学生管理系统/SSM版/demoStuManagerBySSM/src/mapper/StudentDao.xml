@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.StudentDao">
+	<select id="queryTotalRecords" resultType="Integer">
+		select count(*) from student
+		<where>
+			<if test="queryByName != null">
+				sname like "%${queryByName}%"
+			</if>
+			<if test="queryBySex != null">
+				and sex = #{queryBySex}
+			</if>
+		</where>
+	</select>
+
+	<select id="query" resultType="student">
+		select * from student
+		<where>
+			<if test="queryByName != null">
+				sname like "%${queryByName}%"
+			</if>
+			<if test="queryBySex != null">
+				and sex = #{queryBySex}
+			</if>
+		</where>
+		order by create_time desc
+		limit #{startIndex}, #{pageSize}
+	</select>
+
+	<select id="queryById" parameterType="Integer"
+		resultType="student">
+		select * from student where sid = #{sid}
+	</select>
+
+	<insert id="add" parameterType="student">
+		insert into student values(null,
+		#{sname}, #{sex}, #{phone}, #{hobby},
+		#{descript}, #{create_time})
+	</insert>
+
+	<delete id="delete" parameterType="String">
+		delete from student where sid
+		= #{sid}
+	</delete>
+
+	<update id="update" parameterType="student">
+		update student set sname =
+		#{sname}, sex = #{sex}, phone = #{phone}, hobby = #{hobby},
+		descript =
+		#{descript} where sid = #{sid}
+	</update>
+</mapper>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="StyleSheet" href="css/dtree.css" type="text/css" />
+<script type="text/javascript" src="js/dtree.js"></script>
+<title>侧边栏</title>
+</head>
+<body>
+<div class="dtree">
+
+		<p>
+			<a href="javascript: d.openAll();">open all</a> | <a
+				href="javascript: d.closeAll();">close all</a>
+		</p>
+
+		<script type="text/javascript">
+		<!--
+		//param1: 当前节点id
+		//param2: 父节点id
+		//param3: 节点上的文字描述
+		//param4: 跳转路径
+		//param5: 提示信息
+		//param6: 发生变化的frame的name属性值
+		
+			d = new dTree('d');
+
+			d.add(0, -1, '后台管理系统');
+				d.add(101, 0, '分类管理', '');
+					d.add(201, 101, '分类列表', '/DemoShoppingMall01/AdminCategoryServlet?method=getCategories', '', 'mainFrame');
+				d.add(102, 0, '商品管理', '');
+					d.add(202, 102, '商品列表', '/DemoShoppingMall01/AdminProductServlet?method=getProducts&currentPage=1', '', 'mainFrame');
+			
+			document.write(d);
+		//-->
+		</script>
+
+	</div>
+
+</body>
+</html>

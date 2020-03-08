@@ -1,0 +1,14 @@
+# Mac 相关文件
+.DS_Store
+**/.DS_Store
+
+# eclipse 项目
+.project
+**/.project
+**/.settings/
+**/.classpath
+**/bin/
+**/target/
+**/build/
+
+
